@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" role="img" aria-label="ZJ monogram">
+  <rect width="64" height="64" fill="#000000"/>
+  <rect x="12" y="12" width="13.33" height="4" fill="#0066b1"/>
+  <rect x="25.33" y="12" width="13.34" height="4" fill="#003d78"/>
+  <rect x="38.66" y="12" width="13.34" height="4" fill="#e22718"/>
+  <path d="M14 26 H34 V31 L21 47 H34 V52 H14 V47 L27 31 H14 Z" fill="#ffffff"/>
+  <path d="M44 26 H50 V47 Q50 52 44 52 H40 V47 H44 Z" fill="#ffffff"/>
+</svg>
