@@ -6,11 +6,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const PROJECTS = [
   {
-    label: 'Realtime · React',
-    imageLabel: 'Lab · Realtime',
-    title: 'Apex Telemetry Dashboard',
-    desc: 'Live race telemetry streamed over WebSocket into a 60fps charting layer.',
-    tags: ['React', 'D3', 'WebSocket'],
+    label: 'Live · React',
+    imageLabel: 'Crypto · Live',
+    title: 'Pulse',
+    desc: 'Real-time crypto dashboard pulling live prices from the CoinGecko API — animated charts, skeleton loading states, fully responsive.',
+    tags: ['React', 'Tailwind CSS', 'Framer Motion'],
+    url: 'https://pulse-three-delta.vercel.app/',
+    image: '/pulse-preview.png',
   },
   {
     label: '3D · Configurator',
@@ -54,8 +56,11 @@ const STRIPE = 'linear-gradient(90deg,#0066b1 0,#0066b1 33.33%,#003d78 33.33%,#0
 function ProjectCard({ proj }: { proj: typeof PROJECTS[number] }) {
   return (
     <>
-      <div className="photo-frame" style={{ aspectRatio: '16/9' }}>
-        <span className="photo-frame-label">{proj.imageLabel}</span>
+      <div className="photo-frame" style={{ aspectRatio: '16/9', overflow: 'hidden', position: 'relative' }}>
+        {'image' in proj && proj.image
+          ? <img src={proj.image} alt={proj.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          : <span className="photo-frame-label">{proj.imageLabel}</span>
+        }
       </div>
       <div style={{ padding: '24px 24px 28px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
@@ -73,14 +78,34 @@ function ProjectCard({ proj }: { proj: typeof PROJECTS[number] }) {
           fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: 15,
           lineHeight: 1.6, color: 'var(--body)', margin: '0 0 18px',
         }}>{proj.desc}</p>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-          {proj.tags.map(tag => (
-            <span key={tag} style={{
-              fontFamily: 'var(--font-display)', fontSize: 11, fontWeight: 700,
-              letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--muted)',
-              border: '1px solid var(--hairline)', padding: '5px 10px',
-            }}>{tag}</span>
-          ))}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            {proj.tags.map(tag => (
+              <span key={tag} style={{
+                fontFamily: 'var(--font-display)', fontSize: 11, fontWeight: 700,
+                letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--muted)',
+                border: '1px solid var(--hairline)', padding: '5px 10px',
+              }}>{tag}</span>
+            ))}
+          </div>
+          {'url' in proj && proj.url && (
+            <a
+              href={proj.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: 'var(--font-display)', fontSize: 11, fontWeight: 700,
+                letterSpacing: '1px', textTransform: 'uppercase', color: '#fff',
+                textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 5,
+                flexShrink: 0,
+              }}
+            >
+              View live
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="square">
+                <path d="M2 9L9 2M4 2h5v5" />
+              </svg>
+            </a>
+          )}
         </div>
       </div>
     </>
