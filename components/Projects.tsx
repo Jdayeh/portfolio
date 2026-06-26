@@ -78,34 +78,14 @@ function ProjectCard({ proj }: { proj: typeof PROJECTS[number] }) {
           fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: 15,
           lineHeight: 1.6, color: 'var(--body)', margin: '0 0 18px',
         }}>{proj.desc}</p>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8 }}>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-            {proj.tags.map(tag => (
-              <span key={tag} style={{
-                fontFamily: 'var(--font-display)', fontSize: 11, fontWeight: 700,
-                letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--muted)',
-                border: '1px solid var(--hairline)', padding: '5px 10px',
-              }}>{tag}</span>
-            ))}
-          </div>
-          {'url' in proj && proj.url && (
-            <a
-              href={proj.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontFamily: 'var(--font-display)', fontSize: 11, fontWeight: 700,
-                letterSpacing: '1px', textTransform: 'uppercase', color: '#fff',
-                textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 5,
-                flexShrink: 0,
-              }}
-            >
-              View live
-              <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="square">
-                <path d="M2 9L9 2M4 2h5v5" />
-              </svg>
-            </a>
-          )}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+          {proj.tags.map(tag => (
+            <span key={tag} style={{
+              fontFamily: 'var(--font-display)', fontSize: 11, fontWeight: 700,
+              letterSpacing: '1px', textTransform: 'uppercase', color: 'var(--muted)',
+              border: '1px solid var(--hairline)', padding: '5px 10px',
+            }}>{tag}</span>
+          ))}
         </div>
       </div>
     </>
@@ -257,6 +237,8 @@ export default function Projects() {
             key={i}
             ref={el => { if (el) cardRefs.current[i] = el; }}
             className="project-card"
+            onClick={() => proj.url && window.open(proj.url, '_blank', 'noopener,noreferrer')}
+            style={{ cursor: proj.url ? 'pointer' : 'default' }}
             onMouseEnter={e => (e.currentTarget.style.background = 'var(--surface-soft)')}
             onMouseLeave={e => (e.currentTarget.style.background = 'var(--canvas)')}
           >
