@@ -1,11 +1,8 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import dynamic from 'next/dynamic';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-const HeroBackground = dynamic(() => import('./HeroBackground'), { ssr: false });
 
 const STATS = [
   { value: 2, unit: 'yr', label: 'Building for the web', accent: '#0066b1' },
@@ -147,21 +144,20 @@ export default function Hero() {
   return (
     <section ref={sectionRef} id="home" data-section="home" style={{ scrollMarginTop: 'var(--nav-height)', position: 'relative' }}>
       {/* Full-bleed background */}
-      <div className="hero-inner-container" style={{ position: 'relative', backgroundColor: 'var(--surface-card)' }}>
-        <HeroBackground />
-        {/* diagonal texture sits on top of canvas, no solid bg so particles show through */}
+      <div className="hero-inner-container" style={{ position: 'relative' }}>
         <div aria-hidden="true" style={{
-          position: 'absolute', inset: 0, zIndex: 1,
+          position: 'absolute', inset: 0,
+          backgroundColor: 'var(--surface-card)',
           backgroundImage: 'repeating-linear-gradient(135deg,transparent 0 13px,rgba(255,255,255,0.018) 13px 14px)',
         }} />
         <div aria-hidden="true" style={{
-          position: 'absolute', inset: 0, zIndex: 1,
+          position: 'absolute', inset: 0,
           background: 'linear-gradient(180deg,rgba(0,0,0,0.55) 0%,rgba(0,0,0,0) 28%,rgba(0,0,0,0) 45%,rgba(0,0,0,0.94) 100%)',
         }} />
 
         {/* Hero content */}
         <div style={{
-          position: 'relative', zIndex: 2, width: '100%', maxWidth: 'var(--container-max)',
+          position: 'relative', width: '100%', maxWidth: 'var(--container-max)',
           margin: '0 auto',
           padding: '0 clamp(20px,4vw,40px) clamp(48px,7vw,80px)',
         }}>
